@@ -1,0 +1,15 @@
+{
+  "name": "cypress-ui",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open"
+  },
+  "keywords": [],
+  "author": "Gerardo Miranda <gerardodev25@gmail.com> (https://github.com/GerardoDev25)",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^10.10.0"
+  }
+}
