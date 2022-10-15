@@ -5,6 +5,7 @@ describe('guardando elementos', () => {
 
   it('usendo parents', () => {
     cy.visit('/automation-practice-form');
+    cy.get(':nth-child(2) > .group-header > .header-wrapper').debug();
     cy.get(':nth-child(2) > .group-header > .header-wrapper')
       .parents()
       .find('form')
@@ -19,6 +20,13 @@ describe('guardando elementos', () => {
         expect(divs.length).to.eq(70);
 
         expect(labels.length).to.eq(16);
+
+        // console.log(inputs.length);
+        // debugger
+
+        // cy.pause()
+        cy.task('log', inputs.length);
+        cy.log('mensajito de sipres');
       });
   });
 });
