@@ -13,6 +13,7 @@ module.exports = defineConfig({
           console.log('Mensaje del console log del task ' + message);
           return null;
         },
+        // config
       });
     },
     excludeSpecPattern: [
