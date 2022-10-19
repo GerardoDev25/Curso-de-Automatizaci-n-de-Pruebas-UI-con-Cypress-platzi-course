@@ -4,7 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open"
+    "test:ui": "cypress open",
+    "test:headless": "cypress run",
+    "test:headless:chrome": "cypress run --browser chrome",
+    "test:headless:chrome:one": "cypress run --browser chrome --spec cypress/e2e/3-tests/01-firstTest.cy.js",
+    "test:headless:firefox": "cypress run --browser firefox",
+    "test:headless:firefox:dev": "cypress run --browser firefox:dev",
+    "test:headless:firefox:nightly": "cypress run --browser firefox:nightly",
+    "test:headless:edge": "cypress run --browser edge",
+    "test:headless:edge:canar": "cypress run --browser edge:canary"
   },
   "keywords": [],
   "author": "Gerardo Miranda <gerardodev25@gmail.com> (https://github.com/GerardoDev25)",
