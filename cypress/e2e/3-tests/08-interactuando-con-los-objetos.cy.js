@@ -36,7 +36,7 @@ describe('interactuando con los objecots', () => {
     cy.get('button').eq(3).parent().parent().click(5, 6);
   });
 
-  it('input type text', () => {
+  it.skip('input type text', () => {
     cy.visit('/automation-practice-form');
     cy.get('#firstName').type('Gerardo');
     cy.get('#lastName').type('Miranda');
@@ -64,4 +64,15 @@ describe('interactuando con los objecots', () => {
   // {rightarrow} Mueve el cursor a la derecha.
   // {selectall} Selecciona todo el texto creando un selection range.
   // {uparrow}	Mueve el cursor hacia arriba.
+
+  it('chackboxes y readio buttons', () => {
+    cy.visit('/automation-practice-form');
+    // cy.get('#gender-radio-1').click({ force: true });
+    // cy.get('#gender-radio-1').check();
+    cy.get('label[for="gender-radio-1"]').click();
+
+    // cy.get('#hobbiesWrapper > .col-md-9 > :nth-child(2) > .custom-control-label').click();
+    cy.get('label[for="hobbies-checkbox-2"]').click({ force: true });
+    cy.get('label[for="hobbies-checkbox-2"]').click({ force: true });
+  });
 });
