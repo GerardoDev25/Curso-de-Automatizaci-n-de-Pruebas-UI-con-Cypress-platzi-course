@@ -126,7 +126,7 @@ describe('interactuando con los objecots', () => {
     cy.get('#react-select-6-option-3').click();
   });
 
-  it('trabajando con tablas', function () {
+  it.skip('trabajando con tablas', function () {
     cy.visit('https://www.w3schools.com/html/html_tables.asp');
     cy.get('#customers')
       .find('th')
@@ -148,5 +148,13 @@ describe('interactuando con los objecots', () => {
       .invoke('text')
       .should('equal', 'Maria Anders');
     // .then((element) => {});
+  });
+
+  it('trabajando con data pikers', function () {
+    cy.visit('https://material.angular.io/components/datepicker/overview');
+
+    cy.get('datepicker-overview-example').find('input').eq(0).type('11/04/2024');
+
+    cy.get('datepicker-overview-example').find('svg').click();
   });
 });
