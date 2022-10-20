@@ -183,11 +183,19 @@ describe('interactuando con los objecots', () => {
     // cy.contains('You selected Cancel').should('exist');
   });
 
-  it('trabajando con tool-tips', function () {
+  it.skip('trabajando con tool-tips', function () {
     cy.visit('/tool-tips');
     cy.get('#toolTipButton').trigger('mouseover');
-    cy.contains('You hovered over the Button').should('exist')
+    cy.contains('You hovered over the Button').should('exist');
     cy.get('#toolTipButton').trigger('mouseout');
-    cy.contains('You hovered over the Button').should('not.exist')
+    cy.contains('You hovered over the Button').should('not.exist');
+  });
+
+  it('Interactuando con drag and drops', () => {
+    cy.visit('https://demoqa.com/dragabble');
+    cy.get('#dragBox')
+      .trigger('mousedown', { which: 1, pageX: 0, pageY: 0 })
+      .trigger('mousemove', { which: 1, pageX: 200, pageY: 200 })
+      .trigger('mouseup');
   });
 });
