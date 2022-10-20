@@ -150,11 +150,44 @@ describe('interactuando con los objecots', () => {
     // .then((element) => {});
   });
 
-  it('trabajando con data pikers', function () {
-    cy.visit('https://material.angular.io/components/datepicker/overview');
+  it.skip('trabajando con modals', function () {
+    cy.visit('/modal-dialogs');
+    cy.get('#showSmallModal').click();
+    cy.get('#closeSmallModal').click();
+  });
 
-    cy.get('datepicker-overview-example').find('input').eq(0).type('11/04/2024');
+  it.skip('trabajando con confim', function () {
+    cy.visit('/alerts');
 
-    cy.get('datepicker-overview-example').find('svg').click();
+    // const stub = cy.stub();
+    // cy.on('window:confirm', stub);
+    // cy.get('#confirmButton')
+    //   .click()
+    //   .then((e) => {
+    //     expect(stub.getCall(0)).to.be.calledWith('Do you confirm action?');
+    //   });
+
+    // cy.contains('You selected Ok').should('exist')
+
+    cy.get('#confirmButton').click();
+    cy.on('window:confirm', (confirm) => {
+      expect(confirm).to.equal('Do you confirm action?');
+    });
+
+    cy.contains('You selected Ok').should('exist');
+
+    // cy.on('window:confirm', (confirm) => {
+    //   expect(confirm).to.equal('Do you confirm action?');
+    //   return false;
+    // });
+    // cy.contains('You selected Cancel').should('exist');
+  });
+
+  it('trabajando con tool-tips', function () {
+    cy.visit('/tool-tips');
+    cy.get('#toolTipButton').trigger('mouseover');
+    cy.contains('You hovered over the Button').should('exist')
+    cy.get('#toolTipButton').trigger('mouseout');
+    cy.contains('You hovered over the Button').should('not.exist')
   });
 });
