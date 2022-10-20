@@ -111,7 +111,7 @@ describe('interactuando con los objecots', () => {
     cy.get('.custom-select').select('Italy').should('have.value', '6');
   });
 
-  it('interactuando con los dropdown', function () {
+  it.skip('interactuando con los dropdown', function () {
     cy.visit('https://react-select.com/home');
     cy.get('#react-select-6-input').type(' ');
     cy.get('#react-select-6-listbox')
@@ -124,5 +124,29 @@ describe('interactuando con los objecots', () => {
         }
       });
     cy.get('#react-select-6-option-3').click();
+  });
+
+  it('trabajando con tablas', function () {
+    cy.visit('https://www.w3schools.com/html/html_tables.asp');
+    cy.get('#customers')
+      .find('th')
+      .each((element) => {
+        cy.log(element.text());
+      });
+
+    cy.get('#customers').find('th').first().invoke('text').should('equal', 'Company');
+
+    cy.get('#customers').find('th').eq(2).invoke('text').should('equal', 'Country');
+
+    cy.get('#customers').find('tr').should('have.length', 7);
+
+    cy.get('#customers')
+      .find('tr')
+      .eq(1)
+      .find('td')
+      .eq(1)
+      .invoke('text')
+      .should('equal', 'Maria Anders');
+    // .then((element) => {});
   });
 });
