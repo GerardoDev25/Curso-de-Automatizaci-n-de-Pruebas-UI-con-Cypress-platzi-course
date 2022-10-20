@@ -1,4 +1,6 @@
 describe('interactuando con los objecots', () => {
+  let texto;
+
   Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
   });
@@ -65,7 +67,7 @@ describe('interactuando con los objecots', () => {
   // {selectall} Selecciona todo el texto creando un selection range.
   // {uparrow}	Mueve el cursor hacia arriba.
 
-  it('chackboxes y readio buttons', () => {
+  it.skip('chackboxes y readio buttons', () => {
     cy.visit('/automation-practice-form');
     // cy.get('#gender-radio-1').click({ force: true });
     // cy.get('#gender-radio-1').check();
@@ -74,5 +76,32 @@ describe('interactuando con los objecots', () => {
     // cy.get('#hobbiesWrapper > .col-md-9 > :nth-child(2) > .custom-control-label').click();
     cy.get('label[for="hobbies-checkbox-2"]').click({ force: true });
     cy.get('label[for="hobbies-checkbox-2"]').click({ force: true });
+  });
+
+  it('extrayendo informacion', function () {
+    cy.visit('/automation-practice-form');
+    cy.get('#firstName').as('nombre');
+    cy.get('@nombre').type('Gerardo');
+
+    cy.get('@nombre').then((nombre) => {
+      texto = nombre.val();
+      expect(texto).to.eq('Gerardo');
+    });
+    cy.get('@nombre').invoke('val').should('equal', 'Gerardo');
+    cy.get('@nombre').invoke('val').as('nombreGlobal');
+  });
+
+  it('Compartir info', function () {
+    cy.visit('/automation-practice-form');
+    // cy.get('#lastName').as('nombre2');
+    // cy.get('@nombre2').type(texto);
+
+    // cy.get('@nombre2').then((nombre) => {
+    //   expect(nombre.val()).to.eq(texto);
+    // });
+
+    cy.get('#lastName').as('nombre2');
+    cy.get('@nombre2').type(texto);
+    cy.get('#firstName').type(this.nombreGlobal);
   });
 });
