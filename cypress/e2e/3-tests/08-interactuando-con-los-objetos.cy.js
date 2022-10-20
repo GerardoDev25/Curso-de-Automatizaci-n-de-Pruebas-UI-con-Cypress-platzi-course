@@ -78,7 +78,7 @@ describe('interactuando con los objecots', () => {
     cy.get('label[for="hobbies-checkbox-2"]').click({ force: true });
   });
 
-  it('extrayendo informacion', function () {
+  it.skip('extrayendo informacion', function () {
     cy.visit('/automation-practice-form');
     cy.get('#firstName').as('nombre');
     cy.get('@nombre').type('Gerardo');
@@ -91,7 +91,7 @@ describe('interactuando con los objecots', () => {
     cy.get('@nombre').invoke('val').as('nombreGlobal');
   });
 
-  it('Compartir info', function () {
+  it.skip('Compartir info', function () {
     cy.visit('/automation-practice-form');
     // cy.get('#lastName').as('nombre2');
     // cy.get('@nombre2').type(texto);
@@ -103,5 +103,26 @@ describe('interactuando con los objecots', () => {
     cy.get('#lastName').as('nombre2');
     cy.get('@nombre2').type(texto);
     cy.get('#firstName').type(this.nombreGlobal);
+  });
+
+  it.skip('interactuando con los dropdown', function () {
+    cy.visit('https://itera-qa.azurewebsites.net/home/automation');
+    // cy.get('.custom-select').select(10)
+    cy.get('.custom-select').select('Italy').should('have.value', '6');
+  });
+
+  it('interactuando con los dropdown', function () {
+    cy.visit('https://react-select.com/home');
+    cy.get('#react-select-6-input').type(' ');
+    cy.get('#react-select-6-listbox')
+      .children()
+      .children()
+      .each((element, index, list) => {
+        if (element.text === 'Red') {
+          // element.on('click');
+          element.click();
+        }
+      });
+    cy.get('#react-select-6-option-3').click();
   });
 });
